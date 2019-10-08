@@ -6,20 +6,8 @@ Each integer is guaranteed to be between 0 and 1000.
 
 Your submission if accepted, will be added to the rankings section below:
 
-## How to Submit
+## To run solution
+ From the root directory of this project
+ 1. `cd python-solution`
+ 2. `python3 main.py`
 
-- You can host your program code anywhere public.
-- Create an issue on this repo, and give a link to your entry.
-- If you need to, give a command line script for how to run your program.
-
-## How we'll judge
-
-- Execution Time
-- Memory Usage
-- Big O Complexity
-
-## Rankings
-
-```
-< No Rankings Yet >
-```
