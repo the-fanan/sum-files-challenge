@@ -14,33 +14,24 @@ class FileNumberSummer:
 	def generateFileName(self,value):
 		return "{0:0=6}".format(value) + ".csv"
 
-	def _recursivelySumNumbers(self,listOfNumbers, first, last):
-		if first == last:
-			return int(listOfNumbers[first])
-		else:
-			mid = (first + last) // 2
-			return (self._recursivelySumNumbers(listOfNumbers, first, mid) + self._recursivelySumNumbers(listOfNumbers, mid + 1, last))
-
-	def _sumNumbers(self,listOfNumbers):
-		n = len(listOfNumbers)
-		return self._recursivelySumNumbers(listOfNumbers, 0, n - 1)
-
-	def _recursivelyHandleNewLineCaseSummer(self,listOfNumbers, first, last):
-		if first == last:
-			return self._sumNumbers(listOfNumbers[first].split(","))
-		else:
-			mid = (first + last) // 2
-			return (self._recursivelyHandleNewLineCaseSummer(listOfNumbers, first, mid) + self._recursivelyHandleNewLineCaseSummer(listOfNumbers, mid + 1, last))
-
-	def _handleNewLineCaseSummer(self,listOfNumbers):
-		n = len(listOfNumbers)
-		return self._recursivelyHandleNewLineCaseSummer(listOfNumbers, 0, n - 1)
-	
+	def sumNumbersInFile(self,fileDir):
+		fileContent = open(fileDir, "r")
+		sums = 0
+		line = fileContent.readline()
+		while line:
+			line = line.strip()
+			line = line.split(",")
+			for number in line:
+				sums += int(number)
+			line = fileContent.readline()
+		fileContent.close()
+		fileContent.close()
+		return sums
+		
 	def sumFiles(self,first, last):
 		if first == last:
-			fileContent = open(self.rootDir + "/" + self.generateFolderName(first) + "/" + self.generateFileName(first), "r").read().split("\n")
-			#return self._handleNewLineCaseSummer(fileContent)
-			return self._handleNewLineCaseSummer(fileContent)
+			fileDir = self.rootDir + "/" + self.generateFolderName(first) + "/" + self.generateFileName(first)
+			return self.sumNumbersInFile(fileDir)
 		else:
 			mid = (first + last) // 2
 			return (self.sumFiles(first, mid) + self.sumFiles(mid + 1, last))
