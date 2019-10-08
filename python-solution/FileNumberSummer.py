@@ -20,10 +20,7 @@ class FileNumberSummer:
 		try:
 			line = fileContent.readline()
 			while line:
-				line = line.strip()
-				line = line.split(",")
-				for number in line:
-					sums += int(number)
+				sums += sum(map(int,line.split(',')))
 				line = fileContent.readline()
 		finally:
 			fileContent.close()
