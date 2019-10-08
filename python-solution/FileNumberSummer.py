@@ -25,9 +25,8 @@ class FileNumberSummer:
 				sums += int(number)
 			line = fileContent.readline()
 		fileContent.close()
-		fileContent.close()
 		return sums
-		
+
 	def sumFiles(self,first, last):
 		if first == last:
 			fileDir = self.rootDir + "/" + self.generateFolderName(first) + "/" + self.generateFileName(first)
