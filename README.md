@@ -7,7 +7,5 @@ Each integer is guaranteed to be between 0 and 1000.
 Your submission if accepted, will be added to the rankings section below:
 
 ## To run solution
- From the root directory of this project
- 1. `cd python-solution`
- 2. `python3 main.py`
+From the root directory of this project run `python3 python-solution/main.py`
 
