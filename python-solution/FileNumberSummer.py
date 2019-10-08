@@ -29,11 +29,11 @@ class FileNumberSummer:
 			fileContent.close()
 		return sums
 
-	def sumFiles(self,first, last):
+	def sumFiles(self):
 		sums = 0
-		for i in range(first, last + 1):
+		for i in range(self.start, self.end + 1):
 			sums += self.sumNumbersInFile(self.rootDir + "/" + self.generateFolderName(i) + "/" + self.generateFileName(i))
 		return sums
 
 	def getSum(self):
-		return self.sumFiles(self.start, self.end)
+		return self.sumFiles()
