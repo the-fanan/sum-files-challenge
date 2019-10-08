@@ -17,14 +17,16 @@ class FileNumberSummer:
 	def sumNumbersInFile(self,fileDir):
 		fileContent = open(fileDir, "r")
 		sums = 0
-		line = fileContent.readline()
-		while line:
-			line = line.strip()
-			line = line.split(",")
-			for number in line:
-				sums += int(number)
+		try:
 			line = fileContent.readline()
-		fileContent.close()
+			while line:
+				line = line.strip()
+				line = line.split(",")
+				for number in line:
+					sums += int(number)
+				line = fileContent.readline()
+		finally:
+			fileContent.close()
 		return sums
 
 	def sumFiles(self,first, last):
