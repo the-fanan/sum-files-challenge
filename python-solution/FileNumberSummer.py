@@ -30,12 +30,11 @@ class FileNumberSummer:
 		return sums
 
 	def sumFiles(self,first, last):
-		if first == last:
-			fileDir = self.rootDir + "/" + self.generateFolderName(first) + "/" + self.generateFileName(first)
-			return self.sumNumbersInFile(fileDir)
-		else:
-			mid = (first + last) // 2
-			return (self.sumFiles(first, mid) + self.sumFiles(mid + 1, last))
+		sums = 0
+		for i in range(first, last + 1):
+			fileDir = self.rootDir + "/" + self.generateFolderName(i) + "/" + self.generateFileName(i)
+			sums += self.sumNumbersInFile(fileDir)
+		return sums
 
 	def getSum(self):
 		return self.sumFiles(self.start, self.end)
