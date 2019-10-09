@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <thread>
+#include <vector>
 
 using namespace std;
 
-ifstream f;
-string rootDir = "/home/fanan/Documents/active-projects/sum-files-challenge/files/";
-string fileDir;
+string rd = "/home/fanan/Documents/active-projects/sum-files-challenge/files/";
+vector<thread> threads;
 long sum = 0;
 
 string generateFolderName(int a)
@@ -28,9 +29,10 @@ string generateFileName(int a)
 	return fn;
 }
 
-int sumNumbersInFile(string fileDir)
+int sumNumbersInFile(string fd)
 {
-	f.open(fileDir);
+	ifstream f;
+	f.open(fd);
 	long sum = 0;
 	int num = 0;
 	char c;
@@ -51,23 +53,29 @@ int sumNumbersInFile(string fileDir)
 	}
 	f.close();
 	//last number
-	//division is done cause the last digit is repeated
-	sum += num /10;
+	//division is done because the last digit is repeated
+	sum += num / 10;
 	return sum;
 }
 
 int sumNumbers(int i)
 {
-	fileDir = rootDir;
-	fileDir.append(generateFolderName(i)).append("/").append(generateFileName(i));
-	sum += sumNumbersInFile(fileDir);
+	string fd;
+	fd = rd;
+	fd.append(generateFolderName(i)).append("/").append(generateFileName(i));
+	sum += sumNumbersInFile(fd);
 }
 
 int main() 
 {
 	for (int i = 1; i <= 1000; i++) {
-		sumNumbers(i);
+		threads.emplace_back(sumNumbers,i);
 	}
+	
+	for (thread & t : threads) {
+    t.join();
+	}
+
 	cout << sum << '\n';
 	return 1;
 }
