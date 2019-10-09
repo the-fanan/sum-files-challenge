@@ -5,6 +5,9 @@
 using namespace std;
 
 ifstream f;
+string rootDir = "/home/fanan/Documents/active-projects/sum-files-challenge/files/";
+string fileDir;
+long sum = 0;
 
 string generateFolderName(int a)
 {
@@ -53,15 +56,17 @@ int sumNumbersInFile(string fileDir)
 	return sum;
 }
 
+int sumNumbers(int i)
+{
+	fileDir = rootDir;
+	fileDir.append(generateFolderName(i)).append("/").append(generateFileName(i));
+	sum += sumNumbersInFile(fileDir);
+}
+
 int main() 
 {
-	string rootDir = "<ABSOLUTE-PATH-TO-FILES-FOLDER>";
-	string fileDir;
-	long sum = 0;
 	for (int i = 1; i <= 1000; i++) {
-		fileDir = rootDir;
-		fileDir.append(generateFolderName(i)).append("/").append(generateFileName(i));
-		sum += sumNumbersInFile(fileDir);
+		sumNumbers(i);
 	}
 	cout << sum << '\n';
 	return 1;
